@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/input_hex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter HEX (#RRGGBB)"
+        android:inputType="text"
+        android:maxLength="7"/>
+
+
+    <Button
+        android:id="@+id/btn_apply_color"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Apply Color" />
+
+    <TextView
+        android:id="@+id/output_hex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="HEX: #000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/output_rgb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="RGB: (0, 0, 0)"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:padding="8dp" />
+
+    <View
+        android:id="@+id/color_preview"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/darker_gray"/>
+</LinearLayout>

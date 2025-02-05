@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">DEKAN_TRAINING</string>
+    <string name="rgb_colors">RGB Colors</string>
+    <string name="login_for_use_app">Login for use app!</string>
+    <string name="login_input">Enter your login</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hex">HEX</string>
+    <string name="rgb">RGB</string>
+    <string name="input_a_color_in_the_hex_format">Input a color in the HEX format</string>
+</resources>
