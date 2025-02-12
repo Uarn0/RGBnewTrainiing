@@ -29,6 +29,7 @@ class FragmentRGB : Fragment() {
             tab.text = when (position) {
                 0 -> getString(R.string.hex)
                 1 -> getString(R.string.rgb)
+                2 -> "History"
                 else -> "Unknown"
             }
         }.attach()

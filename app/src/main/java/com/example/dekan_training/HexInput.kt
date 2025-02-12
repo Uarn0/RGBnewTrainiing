@@ -1,5 +1,3 @@
-package com.example.dekan_training
-
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,8 +7,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import com.example.dekan_training.R
 
-class hex_input : Fragment() {
+class HexInput : Fragment() {
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,17 +27,19 @@ class hex_input : Fragment() {
 
         btnApply.setOnClickListener {
             val hex = inputHex.text.toString().trim()
-            if (hex.isNotEmpty() && hex.matches(Regex("^#?[0-9A-Fa-f]{6}$"))) {
+            if (hex.matches(Regex("^#?[0-9A-Fa-f]{6}$"))) {
                 val cleanHex = if (hex.startsWith("#")) hex else "#$hex"
                 val color = Color.parseColor(cleanHex)
+
                 val r = Color.red(color)
                 val g = Color.green(color)
                 val b = Color.blue(color)
 
                 outputHex.text = "HEX: $cleanHex"
                 outputRgb.text = "RGB: ($r, $g, $b)"
-
                 colorPreview.setBackgroundColor(color)
+
+                sharedViewModel.addColor("HEX: $cleanHex  |  RGB: ($r, $g, $b)")
             } else {
                 outputHex.text = "Invalid HEX!"
                 outputRgb.text = ""

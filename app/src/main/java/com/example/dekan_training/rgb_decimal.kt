@@ -1,5 +1,3 @@
-package com.example.dekan_training
-
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,8 +7,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import com.example.dekan_training.R
 
-class rgb_input : Fragment() {
+class RGBInput : Fragment() {
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,13 +33,14 @@ class rgb_input : Fragment() {
             val b = inputB.text.toString().toIntOrNull() ?: -1
 
             if (r in 0..255 && g in 0..255 && b in 0..255) {
-                val color = Color.rgb(r, g, b)
                 val hexColor = String.format("#%02X%02X%02X", r, g, b)
+                val rgbString = "RGB: ($r, $g, $b)"
 
-                outputRgb.text = "RGB: ($r, $g, $b)"
+                outputRgb.text = rgbString
                 outputHex.text = "HEX: $hexColor"
+                colorPreview.setBackgroundColor(Color.rgb(r, g, b))
 
-                colorPreview.setBackgroundColor(color)
+                sharedViewModel.addColor("$rgbString  |  HEX: $hexColor")
             } else {
                 outputRgb.text = "Invalid RGB values!"
                 outputHex.text = ""
