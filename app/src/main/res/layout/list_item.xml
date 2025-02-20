@@ -5,13 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-        <View
-            android:id="@+id/color_prev"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="16dp"
-            android:background="@android:color/darker_gray"
-            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/output_color"
@@ -19,13 +12,42 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:text="@string/color_in_spec_format"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textStyle="bold"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/btn_copy_Hex"
+            android:layout_width="150dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/copy_hex"
+            app:layout_constraintEnd_toStartOf="@+id/color_prev"
+            app:layout_constraintStart_toEndOf="@+id/output_color"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_copy_RGB"
+            android:layout_width="150dp"
+            android:layout_height="39dp"
+            android:text="@string/copy_rgb"
+            app:layout_constraintEnd_toStartOf="@+id/color_prev"
+            app:layout_constraintStart_toEndOf="@+id/output_color"
+            app:layout_constraintTop_toBottomOf="@+id/btn_copy_Hex" />
+
+        <View
+            android:id="@+id/color_prev"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toEndOf="@+id/color_prev"
+            app:layout_constraintHorizontal_bias="0.915"
+            app:layout_constraintStart_toEndOf="@+id/output_color"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
 

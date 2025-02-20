@@ -1,29 +1,33 @@
+package com.example.dekan_training
+
+import SharedViewModel
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.example.dekan_training.R
+import com.example.dekan_training.databinding.FragmentHexInputBinding
 
 class HexInput : Fragment() {
     private val sharedViewModel: SharedViewModel by activityViewModels()
+    private var _binding: FragmentHexInputBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_hex_input, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        _binding = FragmentHexInputBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        val inputHex = view.findViewById<EditText>(R.id.input_hex)
-        val btnApply = view.findViewById<Button>(R.id.btn_apply_color)
-        val outputHex = view.findViewById<TextView>(R.id.output_hex)
-        val outputRgb = view.findViewById<TextView>(R.id.output_rgb)
-        val colorPreview = view.findViewById<View>(R.id.color_preview)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val inputHex = binding.inputHex
+        val btnApply = binding.btnApplyColor
+        val outputHex = binding.outputHex
+        val outputRgb = binding.outputRgb
+        val colorPreview = binding.colorPreview
 
         btnApply.setOnClickListener {
             val hex = inputHex.text.toString().trim()
@@ -39,13 +43,16 @@ class HexInput : Fragment() {
                 outputRgb.text = "RGB: ($r, $g, $b)"
                 colorPreview.setBackgroundColor(color)
 
-                sharedViewModel.addColor("HEX: $cleanHex  |  RGB: ($r, $g, $b)")
+                sharedViewModel.addColor(cleanHex)
             } else {
                 outputHex.text = "Invalid HEX!"
                 outputRgb.text = ""
             }
         }
+    }
 
-        return view
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

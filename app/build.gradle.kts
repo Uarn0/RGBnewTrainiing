@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.storage.CacheResetOnProcessCanceled.enabled
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -6,7 +8,9 @@ plugins {
 android {
     namespace = "com.example.dekan_training"
     compileSdk = 35
-
+    viewBinding {
+        enable = true
+    }
     defaultConfig {
         applicationId = "com.example.dekan_training"
         minSdk = 30

@@ -12,4 +12,6 @@
     <string name="input_a_color_in_the_hex_format">Input a color in the HEX format</string>
     <string name="history">History</string>
     <string name="color_in_spec_format">Color in spec format</string>
+    <string name="copy_hex">Copy Hex</string>
+    <string name="copy_rgb">Copy RGB</string>
 </resources>

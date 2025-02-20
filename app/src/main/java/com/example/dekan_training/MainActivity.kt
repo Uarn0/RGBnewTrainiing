@@ -2,18 +2,20 @@ package com.example.dekan_training
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.dekan_training.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var fragmentContainer: View
     private var isFragmentVisible = false
-
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val buttonLogin = findViewById<Button>(R.id.btnLogin)
+        val buttonLogin = binding.btnLogin
         fragmentContainer = findViewById(R.id.fragment_container)
 
         buttonLogin.setOnClickListener {
