@@ -25,18 +25,11 @@ class MyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun getItemViewType(position: Int): Int {
         return if (colorList[position].isHex()) TYPE_HEX else TYPE_RGB
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
-            TYPE_HEX -> {
-                val itemView = inflater.inflate(R.layout.list_item_hex, parent, false)
-                MyViewHolderHEX(itemView)
-            }
-            TYPE_RGB -> {
-                val itemView = inflater.inflate(R.layout.list_item_rgb, parent, false)
-                MyViewHolderRGB(itemView)
-            }
+            TYPE_HEX -> MyViewHolderHEX(inflater.inflate(R.layout.list_item_hex, parent, false))
+            TYPE_RGB -> MyViewHolderRGB(inflater.inflate(R.layout.list_item_rgb, parent, false))
             else -> throw IllegalArgumentException("Unknown view type")
         }
     }
@@ -46,31 +39,19 @@ class MyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         when (holder) {
             is MyViewHolderHEX -> {
-                holder.titleColorNameHEX.text = colorItem.codeColor
-
-                val color = if (colorItem.codeColor.startsWith("#")) {
-                    Color.parseColor(colorItem.codeColor)
-                } else {
-                    parseRgbToColor(colorItem.codeColor)
-                }
-
+                holder.titleColorNameHEX.text = (colorItem as InterfaceHex).getHex()
+                val color = Color.parseColor(colorItem.getHex())
                 holder.colorBlockHEX.setBackgroundColor(color)
                 holder.copyHexButtonHEX.setOnClickListener {
-                    copyToClipBoard(holder.itemView.context, colorItem.codeColor)
+                    copyToClipBoard(holder.itemView.context, colorItem.getHex())
                 }
             }
             is MyViewHolderRGB -> {
-                holder.titleColorNameRGB.text = colorItem.codeColor
-
-                val color = if (colorItem.codeColor.startsWith("#")) {
-                    Color.parseColor(colorItem.codeColor)
-                } else {
-                    parseRgbToColor(colorItem.codeColor)
-                }
-
+                holder.titleColorNameRGB.text = (colorItem as InterfaceRGB).getRGB()
+                val color = parseRgbToColor(colorItem.getRGB())
                 holder.colorBlockRGB.setBackgroundColor(color)
                 holder.copyRGBButtonRGB.setOnClickListener {
-                    copyToClipBoard(holder.itemView.context, colorItem.codeColor)
+                    copyToClipBoard(holder.itemView.context, colorItem.getRGB())
                 }
             }
         }
